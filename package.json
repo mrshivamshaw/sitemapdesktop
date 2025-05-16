@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "main": "main.js",
   "build": {
-    "publish" : null,
     "appId": "com.example.abcsitemap",
     "productName": "ABCSitemap",
     "directories": {
@@ -27,11 +26,12 @@
       "target": "AppImage",
       "icon": "icon.png",
       "category": "Utility"
-    }
+    },
+    "publish": null
   },
   "scripts": {
     "start": "electron .",
-    "dist" : "electron-builder",
+    "dist": "electron-builder --dir && electron-builder",
     "debug": "electron --inspect=5858 .",
     "package": "electron-packager . ABCSitemap --platform=win32 --arch=x64 --icon=icon.ico --out=dist --overwrite"
   },
