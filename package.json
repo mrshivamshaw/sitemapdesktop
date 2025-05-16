@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "main.js",
   "build": {
+    "publish" : null,
     "appId": "com.example.abcsitemap",
     "productName": "ABCSitemap",
     "directories": {
