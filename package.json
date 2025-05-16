@@ -2,6 +2,9 @@
   "name": "sitemapdesktop",
   "version": "1.0.0",
   "main": "main.js",
+  "description": "ABC Sitemap Generator",
+  "author": "Shivam Shaw",
+  "license": "MIT",
   "build": {
     "appId": "com.example.abcsitemap",
     "productName": "ABCSitemap",
@@ -20,7 +23,8 @@
     },
     "mac": {
       "target": "dmg",
-      "icon": "icon.icns"
+      "icon": "icon.icns",
+      "identity": null
     },
     "linux": {
       "target": "AppImage",
@@ -31,14 +35,10 @@
   },
   "scripts": {
     "start": "electron .",
-    "dist": "electron-builder --dir && electron-builder",
+    "dist": "electron-builder",
     "debug": "electron --inspect=5858 .",
     "package": "electron-packager . ABCSitemap --platform=win32 --arch=x64 --icon=icon.ico --out=dist --overwrite"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
     "axios": "^1.9.0",
     "cheerio": "^1.0.0",
