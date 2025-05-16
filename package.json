@@ -1,0 +1,48 @@
+{
+  "name": "sitemapdesktop",
+  "version": "1.0.0",
+  "main": "main.js",
+  "build": {
+    "icon" : "icon.ico",
+    "appId": "com.example.abcsitemap",
+    "productName": "ABCSitemap",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "**/*",
+      "!node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}",
+      "!**/.*",
+      "!**/*.map"
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "mac": {
+      "target": "dmg"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
+  },
+  "scripts": {
+    "start": "electron .",
+    "dist" : "electron-builder",
+    "debug": "electron --inspect=5858 .",
+    "package": "electron-packager . ABCSitemap --platform=win32 --arch=x64 --icon=icon.ico --out=dist --overwrite"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "axios": "^1.9.0",
+    "cheerio": "^1.0.0",
+    "electron-store": "^8.0.0",
+    "p-queue": "^8.1.0"
+  },
+  "devDependencies": {
+    "electron": "^36.2.0",
+    "electron-builder": "^26.0.12"
+  }
+}
