@@ -17,21 +17,16 @@
     ],
     "win": {
       "target": "nsis",
-      "icon": "icon.ico",
-      "executableArgs": ["--no-sandbox"]
+      "icon": "icon.ico"
     },
     "mac": {
       "target": "dmg",
-      "icon": "icon.icns",
-      "executableArgs": ["--no-sandbox"]
+      "icon": "icon.icns"
     },
     "linux": {
       "target": "AppImage",
       "icon": "icon.png",
       "category": "Utility",
-      "appImage": {
-        "noFuse": true
-      },
       "executableArgs": ["--no-sandbox"]
     }
   },
