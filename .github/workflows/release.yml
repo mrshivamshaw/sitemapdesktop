@@ -13,10 +13,10 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        arch: [x64]  # Default to x64; macOS will also build arm64 if needed
+        arch: [x64]
         include:
           - os: macos-latest
-            arch: arm64  # Explicitly build arm64 for macOS
+            arch: arm64
 
     steps:
       - name: Checkout code
@@ -41,8 +41,12 @@ jobs:
         if: success()
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ github.ref_name }}
           files: |
             ${{ matrix.os == 'windows-latest' && 'dist/*.exe' || '' }}
-            ${{ matrix.os == 'macos-latest' && 'dist/*.dmg' || '' }}
+            ${{ matrix.os == 'macos-latest' && matrix.arch == 'x64' && 'dist/ABCSitemap-${{ github.ref_name }}.dmg' || '' }}
+            ${{ matrix.os == 'macos-latest' && matrix.arch == 'arm64' && 'dist/ABCSitemap-${{ github.ref_name }}-arm64.dmg' || '' }}
             ${{ matrix.os == 'ubuntu-latest' && 'dist/*.AppImage' || '' }}
           fail_on_unmatched_files: false
+          retry_limit: 3
+          retry_delay: 10000
