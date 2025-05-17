@@ -30,6 +30,7 @@
       "executableArgs": ["--no-sandbox"]
     }
   },
+  
   "scripts": {
     "start": "electron .",
     "dist": "electron-builder",
