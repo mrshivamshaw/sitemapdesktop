@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "main.js",
   "build": {
-    "publish" : null,
+    "publish": null,
     "appId": "com.example.abcsitemap",
     "productName": "ABCSitemap",
     "directories": {
@@ -17,21 +17,27 @@
     ],
     "win": {
       "target": "nsis",
-      "icon": "icon.ico"
+      "icon": "icon.ico",
+      "executableArgs": ["--no-sandbox"]
     },
     "mac": {
       "target": "dmg",
-      "icon": "icon.icns"
+      "icon": "icon.icns",
+      "executableArgs": ["--no-sandbox"]
     },
     "linux": {
       "target": "AppImage",
       "icon": "icon.png",
-      "category": "Utility"
+      "category": "Utility",
+      "appImage": {
+        "noFuse": true
+      },
+      "executableArgs": ["--no-sandbox"]
     }
   },
   "scripts": {
     "start": "electron .",
-    "dist" : "electron-builder",
+    "dist": "electron-builder",
     "debug": "electron --inspect=5858 .",
     "package": "electron-packager . ABCSitemap --platform=win32 --arch=x64 --icon=icon.ico --out=dist --overwrite"
   },

@@ -28,12 +28,16 @@ jobs:
 
       - name: Build App
         run: npm run dist
+        env:
+          ELECTRON_BUILDER_APPIMAGE_NO_FUSE: true
+          ELECTRON_NO_SANDBOX: true
 
       - name: Upload Artifacts to Release
         if: success()
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            ${{ matrix.os == 'windows-latest' && 'dist/*.exe' || '' }}
-            ${{ matrix.os == 'macos-latest' && 'dist/*.dmg' || '' }}
-            ${{ matrix.os == 'ubuntu-latest' && 'dist/*.AppImage' || '' }}
+            dist/*.exe
+            dist/*.dmg
+            dist/*.AppImage
+          fail_on_unmatched_files: true
