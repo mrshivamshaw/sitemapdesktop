@@ -13,10 +13,6 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        arch: [x64]
-        include:
-          - os: macos-latest
-            arch: arm64
 
     steps:
       - name: Checkout code
@@ -32,21 +28,12 @@ jobs:
 
       - name: Build App
         run: npm run dist
-        env:
-          ELECTRON_BUILDER_APPIMAGE_NO_FUSE: true
-          ELECTRON_NO_SANDBOX: true
-          ELECTRON_BUILDER_ARCHS: ${{ matrix.arch }}
 
       - name: Upload Artifacts to Release
         if: success()
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ github.ref_name }}
           files: |
             ${{ matrix.os == 'windows-latest' && 'dist/*.exe' || '' }}
-            ${{ matrix.os == 'macos-latest' && matrix.arch == 'x64' && 'dist/ABCSitemap-${{ github.ref_name }}.dmg' || '' }}
-            ${{ matrix.os == 'macos-latest' && matrix.arch == 'arm64' && 'dist/ABCSitemap-${{ github.ref_name }}-arm64.dmg' || '' }}
+            ${{ matrix.os == 'macos-latest' && 'dist/*.dmg' || '' }}
             ${{ matrix.os == 'ubuntu-latest' && 'dist/*.AppImage' || '' }}
-          fail_on_unmatched_files: false
-          retry_limit: 3
-          retry_delay: 10000

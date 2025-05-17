@@ -1,9 +1,9 @@
 {
   "name": "sitemapdesktop",
-  "version": "1.0.1.4",
+  "version": "1.0.0",
   "main": "main.js",
   "build": {
-    "publish": null,
+    "publish" : null,
     "appId": "com.example.abcsitemap",
     "productName": "ABCSitemap",
     "directories": {
@@ -32,7 +32,7 @@
   },
   "scripts": {
     "start": "electron .",
-    "dist": "electron-builder",
+    "dist" : "electron-builder",
     "debug": "electron --inspect=5858 .",
     "package": "electron-packager . ABCSitemap --platform=win32 --arch=x64 --icon=icon.ico --out=dist --overwrite"
   },
