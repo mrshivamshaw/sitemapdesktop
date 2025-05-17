@@ -26,8 +26,7 @@
     "linux": {
       "target": "AppImage",
       "icon": "icon.png",
-      "category": "Utility",
-      "executableArgs": ["--no-sandbox"]
+      "category": "Utility"
     }
   },
   "scripts": {
