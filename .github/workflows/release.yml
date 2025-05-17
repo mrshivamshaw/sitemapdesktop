@@ -7,6 +7,8 @@ on:
 
 jobs:
   build:
+    permissions:
+      contents: write
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -35,5 +37,3 @@ jobs:
             ${{ matrix.os == 'windows-latest' && 'dist/*.exe' || '' }}
             ${{ matrix.os == 'macos-latest' && 'dist/*.dmg' || '' }}
             ${{ matrix.os == 'ubuntu-latest' && 'dist/*.AppImage' || '' }}
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
