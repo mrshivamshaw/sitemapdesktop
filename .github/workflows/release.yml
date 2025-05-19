@@ -24,6 +24,7 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
+        shell: bash
         run: |
           if [ "${{ matrix.os }}" == "macos-latest" ]; then
             npm install
@@ -36,6 +37,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y libdbus-1-dev fakeroot
 
       - name: Build App
+        shell: bash
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -46,7 +48,6 @@ jobs:
           elif [ "${{ matrix.os }}" == "ubuntu-latest" ]; then
             npm run dist -- --linux
           fi
-        shell: bash
 
       - name: Upload Artifacts to Release
         if: success()
