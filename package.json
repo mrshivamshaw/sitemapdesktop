@@ -1,6 +1,6 @@
 {
   "name": "sitemapdesktop",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "main.js",
   "build": {
     "publish": null,
@@ -31,7 +31,10 @@
           "arch": "x64"
         }
       ],
-      "icon": "icon.icns"
+      "icon": "icon.icns",
+      "dmg": {
+        "license": null
+      }
     },
     "linux": {
       "target": [
