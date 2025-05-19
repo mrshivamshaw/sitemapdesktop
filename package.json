@@ -1,6 +1,6 @@
 {
   "name": "sitemapdesktop",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "description": "A desktop application for generating sitemaps",
   "main": "main.js",
   "build": {
@@ -32,10 +32,7 @@
           "arch": ["x64", "arm64"]
         }
       ],
-      "icon": "build/icon.icns",
-      "dmg": {
-        "license": null
-      }
+      "icon": "build/icon.icns"
     },
     "linux": {
       "target": [
