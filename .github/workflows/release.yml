@@ -34,19 +34,28 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if [[ "${{ matrix.os }}" == "macos-latest" ]]; then
+          if [ "${{ matrix.os }}" == "macos-latest" ]; then
             npm run dist -- --mac
-          elif [[ "${{ matrix.os }}" == "windows-latest" ]]; then
+          elif [ "${{ matrix.os }}" == "windows-latest" ]; then
             npm run dist -- --win
-          elif [[ "${{ matrix.os }}" == "ubuntu-latest" ]]; then
+          elif [ "${{ matrix.os }}" == "ubuntu-latest" ]; then
             npm run dist -- --linux
           fi
+        shell: bash
 
       - name: Upload Artifacts to Release
         if: success()
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v1
         with:
           files: |
             dist/*.exe
             dist/*.dmg
             dist/*.AppImage
+            dist/*.deb
+            dist/*.rpm
+            dist/*.snap
+            dist/*.zip
+            dist/*.tar.gz
+            dist/*.yml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
