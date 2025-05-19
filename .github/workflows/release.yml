@@ -42,11 +42,11 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if [ "${{ matrix.os }}" == "macos-latest" ]; then
-            npm run dist -- --mac
+            npm run dist:mac
           elif [ "${{ matrix.os }}" == "windows-latest" ]; then
-            npm run dist -- --win
+            npm run dist:win
           elif [ "${{ matrix.os }}" == "ubuntu-latest" ]; then
-            npm run dist -- --linux
+            npm run dist:linux
           fi
 
       - name: Upload Artifacts to Release

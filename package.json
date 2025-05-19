@@ -1,6 +1,6 @@
 {
   "name": "sitemapdesktop",
-  "version": "2.0.15",
+  "version": "2.0.16",
   "description": "A desktop application for generating sitemaps",
   "main": "main.js",
   "build": {
@@ -47,7 +47,10 @@
   },
   "scripts": {
     "start": "electron .",
-    "dist": "electron-builder --win --mac --linux",
+    "dist": "electron-builder",
+    "dist:mac": "electron-builder --mac",
+    "dist:win": "electron-builder --win",
+    "dist:linux": "electron-builder --linux",
     "debug": "electron --inspect=5858 ."
   },
   "keywords": [],
