@@ -21,8 +21,21 @@ let totalLinks = 0;
 let processedLinks = 0;
 let isRunning = false;
 const queue = new PQueue({ concurrency: 3 });
-const tempFilePath = path.join(__dirname, "sitemap-temp.json");
-const visitedFilePath = path.join(__dirname, "visited.txt");
+
+(async () => {
+    const userDataPath = await ipcRenderer.invoke("get-user-data-path");
+    tempFilePath = path.join(userDataPath, "sitemap-temp.json");
+    visitedFilePath = path.join(userDataPath, "visited.txt");
+
+    // Use async file write
+    await fs.writeFile(tempFilePath, "[]", "utf-8");
+    await fs.writeFile(visitedFilePath, "", "utf-8");
+
+    console.log("✅ Files initialized safely at:");
+    console.log(tempFilePath);
+    console.log(visitedFilePath);
+})();
+
 let pendingUrls = [];
 let pages = [];
 

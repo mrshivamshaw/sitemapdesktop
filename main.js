@@ -102,7 +102,7 @@ function showLicenseKeyInput(hardwareFingerprint) {
                 // Save license key and hardware fingerprint
                 store.set('licenseKey', licenseKey);
                 store.set('hardwareFingerprint', hardwareFingerprint);
-                
+
                 licenseWindow.close();
                 loadMainWindow();
             } else {
@@ -118,17 +118,17 @@ function showLicenseKeyInput(hardwareFingerprint) {
 async function validateLicense(licenseKey, hardwareFingerprint) {
     try {
         console.log('Validating license...', licenseKey, hardwareFingerprint);
-        
+
         const response = await axios.post(LICENSE_SERVER_URL, {
-            "license_key" : licenseKey,
-            "hardware_fingerprint":hardwareFingerprint
+            "license_key": licenseKey,
+            "hardware_fingerprint": hardwareFingerprint
         });
 
         // Check if license is valid and matches the current hardware
         if (response.data.valid) {
             licenseValidated = true;
             console.log('License validated successfully');
-            
+
             return true;
         }
         store.delete('licenseKey');
@@ -140,7 +140,7 @@ async function validateLicense(licenseKey, hardwareFingerprint) {
         store.delete('hardwareFingerprint');
         // Show error dialog
         dialog.showErrorBox(
-            'License Validation Failed', 
+            'License Validation Failed',
             'Unable to validate license. Please check your internet connection and try again.'
         );
 
@@ -161,4 +161,8 @@ app.on('window-all-closed', () => {
 
 app.on('activate', () => {
     if (mainWindow === null) createWindow();
+});
+
+ipcMain.handle("get-user-data-path", () => {
+    return app.getPath("userData");
 });
