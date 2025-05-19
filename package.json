@@ -1,6 +1,6 @@
 {
   "name": "sitemapdesktop",
-  "version": "1.0.2.3",
+  "version": "1.0.3",
   "main": "main.js",
   "build": {
     "publish": null,
