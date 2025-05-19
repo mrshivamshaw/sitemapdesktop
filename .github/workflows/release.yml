@@ -38,7 +38,32 @@ jobs:
             npm run dist -- --mac
           elif [[ "${{ matrix.os }}" == "windows-latest" ]]; then
             npm run dist -- --win
-          else
+          elif [[ "${{ matrix.os }}" == "ubuntu-latest" ]]; then
+            npm run dist -- --linux
+          fi
+
+      - name: Upload Artifacts to Release
+        if: success()
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install Linux dependencies
+        if: matrix.os == 'ubuntu-latest'
+        run: sudo apt-get update && sudo apt-get install -y libdbus-1-dev fakeroot
+
+      - name: Build App
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [[ "${{ matrix.os }}" == "macos-latest" ]]; then
+            npm run dist -- --mac
+          elif [[ "${{ matrix.os }}" == "windows-latest" ]]; then
+            npm run dist -- --win
+          elif [[ "${{ matrix.os }}" == "ubuntu-latest" ]]; then
             npm run dist -- --linux
           fi
 
