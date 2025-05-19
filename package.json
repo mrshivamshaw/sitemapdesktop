@@ -1,6 +1,6 @@
 {
   "name": "sitemapdesktop",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A desktop application for generating sitemaps",
   "main": "main.js",
   "build": {
