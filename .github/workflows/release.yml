@@ -65,19 +65,3 @@ jobs:
             dist/*.yml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
-      - name: Push to Public Release Repo
-        if: success()
-        run: |
-          git config --global user.name "mrshivamshaw"
-          git config --global user.email "shivamshaw9005@gmail.com"
-
-          git clone https://mrshivamshaw:${{ secrets.GH_TOKEN }}@github.com/mrshivamshaw/electron-app-releases.git release-repo
-
-          mkdir -p release-repo/${{ github.ref_name }}/${{ matrix.os }}
-          cp -r dist/* release-repo/${{ github.ref_name }}/${{ matrix.os }}/
-
-          cd release-repo
-          git add .
-          git commit -m "Release ${{ github.ref_name }} - ${{ matrix.os }}"
-          git push
